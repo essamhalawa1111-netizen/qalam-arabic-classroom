@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type Dispatch, type FormEvent, type SetStateAction } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -332,7 +332,6 @@ const diacriticsDictionary: Record<string, string> = {
   مطار: "مَطارٌ",
   اليوم: "الْيَوْمَ",
   شكرا: "شُكْرًا",
-  شكرا: "شُكْرًا",
   مدرسة: "مَدْرَسَةٌ",
   كتاب: "كِتابٌ",
   قهوة: "قَهْوَةٌ",
@@ -348,7 +347,10 @@ function applyMockDiacritics(text: string): string {
     .map((part) => {
       const core = part.replace(/^[،,.!?؛:«»"()]+|[،,.!?؛:«»"()]+$/gu, "");
       if (!core) return part;
-      const normalized = core.normalize("NFD").replace(/\p{M}/gu, "").normalize("NFC");
+      const normalized = core
+        .normalize("NFD")
+        .replace(/[\u064B-\u0653\u0656-\u065F\u0670]/gu, "")
+        .normalize("NFC");
       const marked = diacriticsDictionary[normalized];
       return marked ? part.replace(core, marked) : part;
     })
@@ -442,7 +444,7 @@ function MidadApp() {
               <BookOpenText className="size-6" aria-hidden="true" />
             </div>
             <div>
-              <p className="text-xl font-bold">مِداد</p>
+              <p className="text-lg font-bold">مساعد المعلم الذكي</p>
               <p className="text-xs text-muted-foreground">مساحة معلّم العربية</p>
             </div>
           </div>
@@ -492,7 +494,7 @@ function MidadApp() {
                   <BookOpenText className="size-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold sm:text-base">مِداد</p>
+                  <p className="text-sm font-semibold sm:text-base">مساعد المعلم الذكي</p>
                   <p className="text-xs text-muted-foreground">{activeLabel}</p>
                 </div>
               </div>
@@ -593,7 +595,7 @@ function OverviewPage({
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm font-medium text-primary">الثلاثاء، ٢٤ نوفمبر ٢٠٢٦</p>
-          <h1 className="mt-2 text-2xl font-bold sm:text-3xl">أهلاً بك في مِداد</h1>
+          <h1 className="mt-2 text-2xl font-bold sm:text-3xl">أهلاً بك في مساعد المعلم الذكي</h1>
           <p className="mt-2 text-sm text-muted-foreground">كل ما تحتاجه لتجعل درس العربية أقرب وأسهل.</p>
         </div>
         <Button type="button" variant="outline" onClick={() => onNavigate("students")}>
@@ -724,7 +726,7 @@ function StudentsPage({
   onStudentsChange,
 }: {
   students: Student[];
-  onStudentsChange: React.Dispatch<React.SetStateAction<Student[]>>;
+  onStudentsChange: Dispatch<SetStateAction<Student[]>>;
 }) {
   const [query, setQuery] = useState("");
   const [levelFilter, setLevelFilter] = useState<Level | "الكل">("الكل");
