@@ -37,12 +37,12 @@ import { Textarea } from "@/components/ui/textarea";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "مِداد | مساحة معلّم العربية" },
+      { title: "مساعد المعلم الذكي | إدارة دروس العربية" },
       {
         name: "description",
         content: "لوحة عربية لإدارة الطلاب وتحضير الدروس ومتابعة تعلّم العربية.",
       },
-      { property: "og:title", content: "مِداد | مساحة معلّم العربية" },
+      { property: "og:title", content: "مساعد المعلم الذكي | إدارة دروس العربية" },
       {
         property: "og:description",
         content: "إدارة طلابك وتحضير دروس عربية واضحة في مساحة واحدة.",
@@ -512,7 +512,7 @@ function MidadApp() {
                 </Button>
               </div>
             </div>
-            <nav className="flex gap-1 overflow-x-auto border-t border-border/50 px-3 py-2 lg:hidden" aria-label="القائمة الرئيسية">
+            <nav className="grid grid-cols-3 gap-1 border-t border-border/50 px-3 py-2 lg:hidden" aria-label="القائمة الرئيسية">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 const isActive = activePage === item.id;
@@ -522,12 +522,12 @@ function MidadApp() {
                     type="button"
                     size="sm"
                     variant={isActive ? "default" : "ghost"}
-                    className="shrink-0 gap-2"
+                    className="h-auto min-h-10 min-w-0 justify-center gap-1.5 whitespace-normal px-1 py-2 text-[11px]"
                     aria-current={isActive ? "page" : undefined}
                     onClick={() => setActivePage(item.id)}
                   >
-                    <Icon aria-hidden="true" />
-                    {item.label}
+                    <Icon className="size-3.5" aria-hidden="true" />
+                    <span className="whitespace-nowrap">{item.label}</span>
                   </Button>
                 );
               })}

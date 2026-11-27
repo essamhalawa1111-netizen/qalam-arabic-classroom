@@ -75,7 +75,6 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
     // Each content route, / included, must still set its own head(). Never add og:image or
     // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
@@ -83,12 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "مساعد المعلم الذكي | إدارة دروس العربية" },
       { name: "description", content: "لوحة عربية لمتابعة الطلاب وتحضير دروس اللغة العربية." },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "مساعد المعلم الذكي" },
       { property: "og:title", content: "مساعد المعلم الذكي" },
       { property: "og:description", content: "إدارة الطلاب وتحضير دروس اللغة العربية في مساحة واحدة." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
