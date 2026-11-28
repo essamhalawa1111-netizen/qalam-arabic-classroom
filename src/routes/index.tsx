@@ -594,7 +594,7 @@ function OverviewPage({
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-primary">الثلاثاء، ٢٤ نوفمبر ٢٠٢٦</p>
+          <p className="text-sm font-medium text-primary">نظرة عامة على حصصك</p>
           <h1 className="mt-2 text-2xl font-bold sm:text-3xl">أهلاً بك في مساعد المعلم الذكي</h1>
           <p className="mt-2 text-sm text-muted-foreground">كل ما تحتاجه لتجعل درس العربية أقرب وأسهل.</p>
         </div>
